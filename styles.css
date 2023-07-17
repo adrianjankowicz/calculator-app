@@ -144,7 +144,18 @@ hr{
     background-color: rgb(220, 220, 220);
 }
 
-.divider:hover, .multiplier:hover, .minus:hover, .plus:hover, .equal:hover,
+/* .divider:hover, .multiplier:hover, .minus:hover, .plus:hover, .equal:hover,
 .divider:focus, .multiplier:focus, .minus:focus, .plus:focus, .equal:focus {
     background-color: rgb(266,173,26);
+}
+
+.button-operation-selected {
+    background-color: white;
+    color:rgb(246,153,6);
+} */
+
+.divider:focus, .multiplier:focus, .minus:focus, .plus:focus, .equal:focus,
+.button-operation-selected {
+    background-color: white;
+    color:rgb(246,153,6);
 }
