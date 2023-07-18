@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-  width: 20%;
+  width: 380px;
   height: 100%;
   background-color: black;
   border: 2px solid white;
@@ -60,6 +60,7 @@ body {
   color: white;
   outline: none;
   font-size: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .history {
@@ -90,6 +91,7 @@ button {
   border-radius: 100%;
   cursor: pointer;
   font-size: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .divider,
@@ -129,6 +131,7 @@ button {
 .eight:hover,
 .nine:hover {
   background-color: rgb(121, 121, 121);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .divider,
@@ -164,11 +167,13 @@ hr {
 .plus:hover,
 .equal:hover {
   background-color: rgb(266, 173, 26);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .button-operation-selected {
   background-color: white;
   color: rgb(246, 153, 6);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .divider:focus,
 .multiplier:focus,
