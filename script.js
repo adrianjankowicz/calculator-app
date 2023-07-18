@@ -28,7 +28,7 @@ const updateTime = () => {
   let m = today.getMinutes();
   m = checkTime(m);
   time.textContent = h + ':' + m;
-  let t = setTimeout(updateTime, 60000); // update every minute
+  let t = setTimeout(updateTime, 600); // update every minute
 };
 
 const updateDisplay = () => {
@@ -38,7 +38,7 @@ const updateDisplay = () => {
 const checkTime = i => {
   if (i < 10) {
     i = '0' + i;
-  } // add zero in front of numbers < 10
+  }
   return i;
 };
 updateTime();
@@ -46,13 +46,17 @@ updateTime();
 let currentValue = '0';
 let previousValue = '';
 let currentOperation = null;
-let newNumber = false;
+let newNumberStarted = false;
+
 
 const clear = () => {
   currentValue = '0';
   previousValue = '';
   currentOperation = null;
+  newNumberStarted = false;
+  screen.style.fontSize = '3rem';
   updateDisplay();
+  clearSelectedOperation();
 };
 
 const calculate = () => {
@@ -81,35 +85,49 @@ const calculate = () => {
       return;
   }
 
-  currentValue = result;
+  if (result.toString().length > 9) {
+    screen.style.fontSize = '1.5rem';
+  }
+
+  currentValue = parseFloat(result.toFixed(3));
+  previousValue = currentValue;
   currentOperation = null;
+  newNumberStarted = false;
   updateDisplay();
-  newNumber = false;
 };
 
-equal.addEventListener('click', () => {
-  calculate();
-  clearSelectedOperation();
-});
+
 
 const appendNumber = number => {
-  if (currentValue === '0' && number !== 0) {
-    currentValue = number.toString();
+  if (newNumberStarted) {
+    if (currentValue.length < 12) {
+      if (currentValue.length > 5) {
+        screen.style.fontSize = '2rem';
+      }
+      currentValue = currentValue.toString() + number.toString();
+    }
   } else {
-    currentValue = currentValue.toString() + number.toString();
+    currentValue = number.toString();
+    newNumberStarted = true;
   }
   updateDisplay();
 };
 
 const chooseOperation = operation => {
-  if (currentValue === '') return;
+  if (currentValue === '0' || currentValue === '') return;
   if (previousValue !== '') {
     calculate();
-    newNumber = true;
   }
+
+  if (previousValue !== '' && !newNumberStarted) {
+    calculate();
+  } else {
+    previousValue = currentValue;
+  }
+
   clearSelectedOperation();
   currentOperation = operation;
-  previousValue = currentValue;
+  //previousValue = currentValue;
   switch (operation) {
     case '+':
       operation = 'plus';
@@ -129,9 +147,7 @@ const chooseOperation = operation => {
   document
     .querySelector('.' + operation)
     .classList.add('button-operation-selected');
-  previousValue = currentValue;
-  currentValue = '0';
-  newNumber = true;
+  newNumberStarted = false;
   updateDisplay();
 };
 
@@ -169,6 +185,11 @@ const appendDot = () => {
   }
   updateDisplay();
 };
+
+equal.addEventListener('click', () => {
+  calculate();
+  clearSelectedOperation();
+});
 
 remove.addEventListener('click', removeLastDigit);
 
