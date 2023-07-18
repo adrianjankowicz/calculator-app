@@ -50,29 +50,21 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
+  text-align: end;
 }
 
 .remove {
-  width: 3rem;
-  height: 3rem;
-  background-color: black;
+  width: auto;
   color: white;
-  outline: none;
   font-size: 2rem;
   transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.history {
-  display: flex;
-}
-
-.history p {
-  justify-content: end;
+  margin-left: 1rem;
+  cursor: pointer;
 }
 
 .result {
   font-size: 3rem;
+  flex-grow: 1;
 }
 
 .bottom-screen {
@@ -161,6 +153,10 @@ hr {
   background-color: rgb(220, 220, 220);
 }
 
+.remove:hover{
+    color:rgb(220, 220, 220);
+}
+
 .divider:hover,
 .multiplier:hover,
 .minus:hover,
@@ -179,7 +175,6 @@ hr {
 .multiplier:focus,
 .minus:focus,
 .plus:focus,
-.equal:focus,
 .button-operation-selected {
   background-color: white;
   color: rgb(246, 153, 6);
